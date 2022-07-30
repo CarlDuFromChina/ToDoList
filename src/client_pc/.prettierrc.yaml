@@ -1,0 +1,7 @@
+printWidth: 150 # Specify the length of line that the printer will wrap on.
+singleQuote: true # Use single quotes instead of double quotes.
+trailingComma: none
+bracketSpacing: true # 大括号首尾要空格
+semi: true
+arrowParens: 'avoid'
+tabWidth: 2

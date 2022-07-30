@@ -1,0 +1,56 @@
+version: '2'
+services:
+  todo-html-pc:
+    container_name: "todo-html-pc"
+    image: carldu/todo-html-pc:latest
+    ports:
+      - "8005:80"
+    links:
+      - server
+    volumes:
+      - /docker_data/todo/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - todo-network
+
+  todo-db:
+    image: postgres:12
+    container_name: "postgres"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+    restart: always
+    ports:
+      - "5435:5432"
+    environment:
+      POSTGRES_DB: todo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123123
+    volumes:
+      - /docker_data/todo/pg_data:/var/lib/postgresql/data
+    networks:
+      - todo-network
+
+  server:
+    container_name: "server"
+    image: carldu/todo-server:latest
+    environment:
+      - NODE_ENV=production
+      - TYPEORM_CONNECTION=postgres
+      - TYPEORM_HOST=todo-db
+      - TYPEORM_USERNAME=postgres
+      - TYPEORM_PASSWORD=123123
+      - TYPEORM_DATABASE=todo
+      - TYPEORM_PORT=5432
+      - TYPEORM_LOGGING=true
+      - TZ=Asia/Shanghai
+    ports:
+      - "5000:5000"
+    links:
+      - todo-db
+    networks:
+      - todo-network
+
+networks:
+  todo-network:
+    driver: bridge
