@@ -1,10 +1,12 @@
 import { JetView } from "webix-jet";
+import AccountView from './account';
 
 export default class ToolbarView extends JetView {
   config() {
     const _ = this.app.getService('locale')._;
 
     return {
+      id: 'toolbar',
       view: 'toolbar',
       css: 'webix_dark',
       height: 45,
@@ -45,9 +47,23 @@ export default class ToolbarView extends JetView {
             { id: 2, value: _('Completed') }
           ],
           on: { onChange: toggleHandler }
+        },
+        {
+          view: 'icon',
+          height: 25,
+          width: 40,
+          tooltip: '',
+          icon: 'mdi mdi-account',
+          click: function() {
+            this.$scope.account.showWin(this.$view);
+          }
         }
       ]
     }
+  }
+
+  init() {
+    this.account = this.ui(AccountView);
   }
 }
 

@@ -19,6 +19,7 @@ function login(form) {
 
 function logout() {
   webix.storage.local.remove('user');
+  return Promise.resolve(true);
 }
 
 export default {

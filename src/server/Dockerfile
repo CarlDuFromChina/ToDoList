@@ -29,6 +29,6 @@ COPY --from=builder /home/node/node_modules/ /home/node/node_modules/
 COPY --from=builder /home/node/dist/ /home/node/dist/
 COPY --from=builder /home/node/.env /home/node/.env
 
-EXPOSE 5000
+EXPOSE 6000
 
 CMD ["node", "dist/main.js"]

@@ -2,7 +2,6 @@ import './styles/app.css';
 import '@xbs/webix-pro/webix.css';
 import '@mdi/font/css/materialdesignicons.css';
 import * as webix from 'webix';
-import './core';
 import { JetApp } from 'webix-jet';
 import { plugins } from 'webix-jet';
 import session from 'models/session';
@@ -51,15 +50,16 @@ webix.ready(function () {
   window.tr = app.getService('locale')._;
   app.render();
 
+  // 请求前加上认证
   webix.attachEvent('onBeforeAjax', function (mode, url, data, request, headers, files, promise) {
     let user = webix.storage.local.get('user');
     if (user && user.token) {
       headers['token'] = user.token;
     }
   });
+  
+  // 监听请求异常
   webix.attachEvent('onAjaxError', function (xhr) {
-    webix.message.position = 'top';
-    webix.message.expire = 3000;
     if (xhr.status === 401) {
       webix.message({
         type: 'error',
