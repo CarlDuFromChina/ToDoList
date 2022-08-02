@@ -2,6 +2,8 @@ import { JetView } from "webix-jet";
 
 export default class ToolbarView extends JetView {
   config() {
+    const _ = this.app.getService('locale')._;
+
     return {
       view: 'toolbar',
       css: 'webix_dark',
@@ -17,9 +19,9 @@ export default class ToolbarView extends JetView {
         {
           view: 'button',
           id: 'create_button',
-          value: '+ Create',
+          value: _('+ Create'),
           css: 'webix_primary',
-          tooltip: 'Create new task',
+          tooltip: _('Create new task'),
           width: 120,
           click: createNewTaskHandler
         },
@@ -39,8 +41,8 @@ export default class ToolbarView extends JetView {
           id: 'segmented',
           width: 240,
           options: [
-            { id: 1, value: 'Active' },
-            { id: 2, value: 'Completed' }
+            { id: 1, value: _('Active') },
+            { id: 2, value: _('Completed') }
           ],
           on: { onChange: toggleHandler }
         }
@@ -75,7 +77,7 @@ function searchHandler() {
 function createNewTaskHandler() {
   const list = $$('todo_list');
   filterToDoList();
-  var data = { task: 'New Task', status: true, star: false }
+  var data = { task: tr('New Task'), status: true, star: false }
   const item = list.add(data);
   webix.ajax().post('/api/task', data);
   filterToDoList(true);

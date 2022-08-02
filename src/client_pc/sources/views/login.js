@@ -6,16 +6,18 @@ export default class LoginView extends JetView {
   }
 
   config() {
+    const _ = this.app.getService('locale')._;
+
     var loginForm = {
       id: 'login',
       view: 'form',
       scroll: false,
       width: 300,
       elements: [
-        { view: 'text', label: 'User Code', name: 'code' },
+        { view: 'text', label: _('User Code'), name: 'code' },
         {
           view: 'search',
-          label: 'Password',
+          label: _('Password'),
           icon: 'wxi-eye',
           name: 'password',
           type: 'password',
@@ -37,14 +39,7 @@ export default class LoginView extends JetView {
         },
         {
           view: 'button',
-          autowidth: true,
-          css: 'webix_transparent',
-          value: 'No Account',
-          click: () => this.show('signup')
-        },
-        {
-          view: 'button',
-          value: 'Login',
+          value: _('Login'),
           click: () => this.doLogin()
         }
       ],
@@ -59,8 +54,8 @@ export default class LoginView extends JetView {
         onValidationError: function (key, obj) {
           var text;
 
-          if (key == 'code') text = "code can't be empty";
-          if (key == 'password') text = `password can't be empty`;
+          if (key == 'code') text = _('code can\'t be empty');
+          if (key == 'password') text = _('password can\'t be empty');
 
           webix.message({ type: 'error', text: text });
         }
@@ -72,7 +67,18 @@ export default class LoginView extends JetView {
         { gravity: 1 },
         {
           align: 'center,middle',
-          body: loginForm
+          body: {
+            rows: [
+              loginForm,
+              {
+                view: 'template',
+                autoheight: true,
+                type: 'clean',
+                css: { 'margin-top': '3px !important' },
+                template: `${_(`Don\'t have an account yet?`)} <a href="/#!/signup">${_('Register Now')}</a>`
+              }
+            ]
+          }
         },
         { gravity: 2 }
       ]
@@ -80,7 +86,7 @@ export default class LoginView extends JetView {
   }
 
   doLogin() {
-    const user = this.app.getService("user");
+    const user = this.app.getService('user');
     const form = this.$$('login');
 
     if (form.validate()) {
@@ -90,8 +96,8 @@ export default class LoginView extends JetView {
           text: JSON.parse(resp.response).message,
           type: 'error',
           expire: 3000
-        })
-      })
+        });
+      });
     }
   }
 }

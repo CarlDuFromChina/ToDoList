@@ -1,14 +1,6 @@
 import { JetView } from 'webix-jet';
 webix.message.position = 'bottom';
 
-webix.protoUI(
-  {
-    name: 'editlist'
-  },
-  webix.EditAbility,
-  webix.ui.list
-);
-
 export default class ListView extends JetView {
 	config() {
 	  const _ = this.app.getService("locale")._;
@@ -37,22 +29,22 @@ export default class ListView extends JetView {
 				delete_icon: function (e, id) {
 					webix
 						.confirm({
-							title: 'Task would be deleted',
-							text: 'Do you still want to continue?',
+							title: _('Task would be deleted'),
+							text: _('Do you still want to continue?'),
 							type: 'confirm-warning'
 						})
 						.then(
 							() => {
 								webix.ajax().del(`/api/task/${id}`);
 								webix.message({
-									text: 'Task was deleted',
+									text: _('Task was deleted'),
 									expire: 1000
 								});
 								this.remove(id);
 								return false;
 							},
 							function () {
-								webix.message('Rejected');
+								webix.message(_('Rejected'));
 							}
 						);
 				},
@@ -116,16 +108,16 @@ function list_template(obj) {
 		//active
 		return (
 			`
-		<span class='drag_icon webix_icon mdi mdi-drag' webix_tooltip='Drag to reorder the task'></span>` +
+		<span class='drag_icon webix_icon mdi mdi-drag' webix_tooltip='${tr('Drag to reorder the task')}'></span>` +
 			obj.task +
 			`
-		<span class='delete_icon webix_icon mdi mdi-delete' webix_tooltip='Remove the task'></span>
-		<span class='complete_icon webix_icon mdi mdi-check-circle' webix_tooltip='Complete the task'></span>
+		<span class='delete_icon webix_icon mdi mdi-delete' webix_tooltip='${tr('Remove the task')}'></span>
+		<span class='complete_icon webix_icon mdi mdi-check-circle' webix_tooltip='${tr('Complete the task')}'></span>
 		<span class='star_icon webix_icon mdi mdi-` +
 			(obj.star ? 'star' : 'star-outline') +
 			`'
 		webix_tooltip='` +
-			(obj.star ? 'Unselect the task' : 'Select the task') +
+			(obj.star ? tr('Unselect the task') : tr('Select the task')) +
 			`'></span>`
 		);
 	} else {

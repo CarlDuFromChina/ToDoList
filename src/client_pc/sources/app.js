@@ -2,6 +2,7 @@ import './styles/app.css';
 import '@xbs/webix-pro/webix.css';
 import '@mdi/font/css/materialdesignicons.css';
 import * as webix from 'webix';
+import './core';
 import { JetApp } from 'webix-jet';
 import { plugins } from 'webix-jet';
 import session from 'models/session';
@@ -47,6 +48,7 @@ webix.ready(function () {
       token: ''
     }
   });
+  window.tr = app.getService('locale')._;
   app.render();
 
   webix.attachEvent('onBeforeAjax', function (mode, url, data, request, headers, files, promise) {

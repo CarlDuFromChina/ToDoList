@@ -7,19 +7,41 @@ export default class SignupView extends JetView {
 
   config() {
     var app = this.app;
+    const _ = this.app.getService('locale')._;
     
     var form = {
       view: 'form',
       scroll: false,
       width: 300,
       elements: [
-        { view: 'text', label: 'User Code', name: 'code' },
+        { view: 'text', label: _('User Code'), name: 'code' },
         {
           view: 'search',
-          label: 'Password',
-          id: 'passwd_input',
+          label: _('Password'),
           icon: 'wxi-eye',
           name: 'password',
+          type: 'password',
+          value: '',
+          on: {
+            onSearchIconClick: function () {
+              var theInput = this.config.type;
+
+              if (theInput !== 'password') {
+                this.config.icon = 'wxi-eye';
+                this.config.type = 'password';
+              } else if (theInput === 'password') {
+                this.config.icon = 'wxi-eye-slash';
+                this.config.type = '';
+              }
+              this.refresh();
+            }
+          }
+        },
+        {
+          view: 'search',
+          label: _('Confirm Password'),
+          icon: 'wxi-eye',
+          name: 'password2',
           type: 'password',
           value: '',
           on: {
@@ -49,6 +71,10 @@ export default class SignupView extends JetView {
       ],
       rules: {
         password: webix.rules.isNotEmpty,
+        password2: function (v2) {
+          var v1 = this.getValues().password;
+          return v1 === v2;
+        },
         code: webix.rules.isNotEmpty
       },
       elementsConfig: {
@@ -58,8 +84,9 @@ export default class SignupView extends JetView {
         onValidationError: function (key, obj) {
           var text;
 
-          if (key == 'code') text = "code can't be empty";
-          if (key == 'password') text = `password can't be empty`;
+          if (key == 'code') text = _('code can\'t be empty');
+          if (key == 'password') text = _('password can\'t be empty');
+          if (key == 'password2') text = _('the two passwords are different');
 
           webix.message({ type: 'error', text: text });
         }
