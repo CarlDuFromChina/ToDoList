@@ -77,3 +77,33 @@
 	 width:60px;
 	 padding-left:10px;
  }
+
+ .webix_el_hover-button {
+  position: fixed;
+  color: #409eff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+	box-shadow: 0 0 6px #888888;
+  cursor: pointer;
+  z-index: 5;
+  right: 40px;
+  bottom: 40px;
+  border-radius: 50%;
+}
+
+.webix_el_hover-button .webix_button {
+  border-radius: 20px !important;
+  width: 40px;
+  height: 40px;
+  background-color: #fff !important;
+}
+.webix_el_hover-button .webix_el_box {
+  padding: 0 !important;
+}
+
+.webix_el_hover-button .webix_icon_btn {
+  vertical-align: middle;
+  margin: 0;
+}

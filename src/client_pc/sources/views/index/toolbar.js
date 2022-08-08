@@ -14,44 +14,24 @@ export default class ToolbarView extends JetView {
       elements: [
         {
           view: 'label',
-          width: 30,
+          autowidth: true,
           label: "<span class='webix_icon mdi mdi-playlist-check'></span>"
         },
-        { view: 'label', width: 130, label: 'ToDoList' },
-        {
-          view: 'button',
-          id: 'create_button',
-          value: _('+ Create'),
-          css: 'webix_primary',
-          tooltip: _('Create new task'),
-          width: 120,
-          click: createNewTaskHandler
-        },
+        { view: 'label', autowidth: true, label: 'ToDoList' },
+        {},
         {
           view: 'search',
           id: 'search_input',
           clear: 'hover',
           minWidth: 150,
-          maxWidth: 500,
           on: {
             onTimedKeyPress: searchHandler
           }
         },
-        {},
-        {
-          view: 'segmented',
-          id: 'segmented',
-          width: 240,
-          options: [
-            { id: 1, value: _('Active') },
-            { id: 2, value: _('Completed') }
-          ],
-          on: { onChange: toggleHandler }
-        },
         {
           view: 'icon',
           height: 25,
-          width: 40,
+          autowidth: true,
           tooltip: '',
           icon: 'mdi mdi-account',
           click: function() {
@@ -67,17 +47,6 @@ export default class ToolbarView extends JetView {
   }
 }
 
-function toggleHandler(id) {
-  const button = $$('create_button');
-  if (id == 2) {
-    filterToDoList(false);
-    button.hide();
-  } else {
-    filterToDoList(true);
-    button.show();
-  }
-}
-
 function searchHandler() {
   const search_value = $$('search_input').getValue().toLowerCase();
   const segmented_value = $$('segmented').getValue();
@@ -90,7 +59,7 @@ function searchHandler() {
   });
 }
 
-function createNewTaskHandler() {
+export function createNewTaskHandler() {
   const list = $$('todo_list');
   filterToDoList();
   var data = { task: tr('New Task'), status: true, star: false }
@@ -102,7 +71,7 @@ function createNewTaskHandler() {
   list.edit(item);
 }
 
-function filterToDoList(status) {
+export function filterToDoList(status) {
   const list = $$('todo_list');
   if (status === undefined) {
     list.filter();

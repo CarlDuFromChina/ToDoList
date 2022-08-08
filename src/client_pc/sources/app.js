@@ -71,4 +71,3 @@ webix.ready(function () {
   webix.message.position = 'top';
   webix.message.expire = 3000;
 });
-
