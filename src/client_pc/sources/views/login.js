@@ -85,6 +85,13 @@ export default class LoginView extends JetView {
     };
   }
 
+  init() {
+    const user = this.app.getService('user');
+    if (user.getStatus()) {
+      this.show('/index');
+    }
+  }
+
   doLogin() {
     const user = this.app.getService('user');
     const form = this.$$('login');
