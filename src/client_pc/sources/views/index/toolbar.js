@@ -2,8 +2,14 @@ import { JetView } from "webix-jet";
 import AccountView from './account';
 
 export default class ToolbarView extends JetView {
+  constructor(app, config) {
+    super(app, config);
+    this.lang = webix.storage.local.get('lang');
+  }
+
   config() {
-    const _ = this.app.getService('locale')._;
+    const locale = this.app.getService('locale');
+    const _ = locale._;
 
     return {
       id: 'toolbar',
@@ -26,6 +32,28 @@ export default class ToolbarView extends JetView {
           minWidth: 150,
           on: {
             onTimedKeyPress: searchHandler
+          }
+        },
+        {
+          view: 'icon',
+          icon: 'mdi mdi-google-translate',
+          height: 25,
+          popup: {
+            view: 'contextmenu',
+            data: [
+              { id: 'en_US', value: 'English' },
+              { id: 'zh_CN', value: '中文' }
+            ],
+            value: this.lang,
+            on: {
+              onMenuItemClick(id) {
+                if (id !== this.lang) {
+                  this.lang = id;
+                  webix.storage.local.put('lang', id);
+                  locale.setLang(id);
+                }
+              }
+            }
           }
         },
         {

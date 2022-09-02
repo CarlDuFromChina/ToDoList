@@ -37,7 +37,12 @@ webix.ready(function () {
   else if (webix.CustomScroll) webix.CustomScroll.init();
 
   const app = new MyApp({});
-  app.use(plugins.Locale, { lang: 'zh_CN' });
+  var lang = webix.storage.local.get('lang');
+  if (!lang) {
+    lang = 'zh_CN';
+    webix.storage.local.put('lang', lang);
+  }
+  app.use(plugins.Locale, { lang });
   app.use(plugins.User, {
     model: session,
     ping: 15000,
