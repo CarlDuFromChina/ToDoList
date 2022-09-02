@@ -24,4 +24,5 @@ export default {
   'Unselect the task': 'Unselect the task',
   'Select the task': 'Select the task',
   'New Task': 'New Task',
+  'Logout': 'Logout',
 }

@@ -24,4 +24,5 @@ export default {
   'Unselect the task': '取消标记',
   'Select the task': '标记',
   'New Task': '新任务',
+  'Logout': '退出',
 }

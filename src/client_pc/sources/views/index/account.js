@@ -3,6 +3,7 @@ import { JetView } from 'webix-jet';
 
 export default class AccountView extends JetView {
   config() {
+    const _ = this.app.getService('locale')._;
     const user = this.app.getService('user');
     var userInfo = webix.storage.local.get('user');
     var logout = () => {
@@ -30,7 +31,7 @@ export default class AccountView extends JetView {
             },
             data: [
               { id: '1', name: userName },
-              { id: '2', name: 'logout', click: () => logout() },
+              { id: '2', name: _('Logout'), click: () => logout() },
             ],
             on: {
               onItemClick(id, e, node) {

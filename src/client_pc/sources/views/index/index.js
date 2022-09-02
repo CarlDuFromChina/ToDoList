@@ -39,24 +39,23 @@ export default class IndexView extends JetView {
                 }
               }
             },
-            {}
+            {},
+            {
+              view: 'icon',
+              id: 'create_button',
+              height: 25,
+              icon:"mdi mdi-plus",
+              autowidth: true,
+              tooltip: _('Create new task'),
+              click: () => createNewTaskHandler()
+            },
+            {
+              width: 6
+            }
           ]
         },
         ListView
       ],
     };
-  }
-
-  init() {
-    this.ui({
-      id: 'create_button',
-      view: "hover-button",
-      width: 40,
-      height: 40,
-      type: "icon",
-      icon: "mdi mdi-pencil",
-      tooltip: "Create",
-      click: createNewTaskHandler
-    });
   }
 }
