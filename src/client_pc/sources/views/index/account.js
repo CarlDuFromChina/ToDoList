@@ -4,6 +4,14 @@ import { JetView } from 'webix-jet';
 export default class AccountView extends JetView {
   config() {
     const user = this.app.getService('user');
+    var userInfo = webix.storage.local.get('user');
+    var logout = () => {
+      user.logout().then(() => this.app.show('/login'));
+    }
+    if (!userInfo) {
+      logout();
+    }
+    var userName = (userInfo || {}).code || '';
 
     return {
       view: 'popup',
@@ -21,8 +29,8 @@ export default class AccountView extends JetView {
               template: '#name#'
             },
             data: [
-              { id: '1', name: webix.storage.local.get('user').code },
-              { id: '2', name: 'logout', click: () => user.logout().then(() => this.app.show('/login')) },
+              { id: '1', name: userName },
+              { id: '2', name: 'logout', click: () => logout() },
             ],
             on: {
               onItemClick(id, e, node) {

@@ -65,6 +65,7 @@ webix.ready(function () {
         type: 'error',
         text: 'Access Denied'
       })
+      app.getService('user').logout().then(() => app.show('/login'));
     }
   });
 
