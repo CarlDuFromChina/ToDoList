@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoList", "ToDoList\ToDoList.csproj", "{B928E85E-03CD-4EE9-8CB5-8E32CC9E1883}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ToDoList.Setup", "ToDoList.Setup\ToDoList.Setup.vdproj", "{D046B559-33CD-4103-8598-8404C6B7A6DB}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ToDoList.Setup", "ToDoList.Setup\ToDoList.Setup.vdproj", "{96EC02DE-9549-44E3-B7CD-DD5F402EBFD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,16 +41,16 @@ Global
 		{B928E85E-03CD-4EE9-8CB5-8E32CC9E1883}.Release|x64.Build.0 = Release|Any CPU
 		{B928E85E-03CD-4EE9-8CB5-8E32CC9E1883}.Release|x86.ActiveCfg = Release|Any CPU
 		{B928E85E-03CD-4EE9-8CB5-8E32CC9E1883}.Release|x86.Build.0 = Release|Any CPU
-		{D046B559-33CD-4103-8598-8404C6B7A6DB}.Debug|Any CPU.ActiveCfg = Debug
-		{D046B559-33CD-4103-8598-8404C6B7A6DB}.Debug|ARM.ActiveCfg = Debug
-		{D046B559-33CD-4103-8598-8404C6B7A6DB}.Debug|ARM64.ActiveCfg = Debug
-		{D046B559-33CD-4103-8598-8404C6B7A6DB}.Debug|x64.ActiveCfg = Debug
-		{D046B559-33CD-4103-8598-8404C6B7A6DB}.Debug|x86.ActiveCfg = Debug
-		{D046B559-33CD-4103-8598-8404C6B7A6DB}.Release|Any CPU.ActiveCfg = Release
-		{D046B559-33CD-4103-8598-8404C6B7A6DB}.Release|ARM.ActiveCfg = Release
-		{D046B559-33CD-4103-8598-8404C6B7A6DB}.Release|ARM64.ActiveCfg = Release
-		{D046B559-33CD-4103-8598-8404C6B7A6DB}.Release|x64.ActiveCfg = Release
-		{D046B559-33CD-4103-8598-8404C6B7A6DB}.Release|x86.ActiveCfg = Release
+		{96EC02DE-9549-44E3-B7CD-DD5F402EBFD6}.Debug|Any CPU.ActiveCfg = Debug
+		{96EC02DE-9549-44E3-B7CD-DD5F402EBFD6}.Debug|ARM.ActiveCfg = Debug
+		{96EC02DE-9549-44E3-B7CD-DD5F402EBFD6}.Debug|ARM64.ActiveCfg = Debug
+		{96EC02DE-9549-44E3-B7CD-DD5F402EBFD6}.Debug|x64.ActiveCfg = Debug
+		{96EC02DE-9549-44E3-B7CD-DD5F402EBFD6}.Debug|x86.ActiveCfg = Debug
+		{96EC02DE-9549-44E3-B7CD-DD5F402EBFD6}.Release|Any CPU.ActiveCfg = Release
+		{96EC02DE-9549-44E3-B7CD-DD5F402EBFD6}.Release|ARM.ActiveCfg = Release
+		{96EC02DE-9549-44E3-B7CD-DD5F402EBFD6}.Release|ARM64.ActiveCfg = Release
+		{96EC02DE-9549-44E3-B7CD-DD5F402EBFD6}.Release|x64.ActiveCfg = Release
+		{96EC02DE-9549-44E3-B7CD-DD5F402EBFD6}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

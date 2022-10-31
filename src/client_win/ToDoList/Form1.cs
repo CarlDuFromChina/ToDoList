@@ -31,7 +31,7 @@ namespace ToDoList
 
         public void InitializeChromium()
         {
-            var cache = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cache");
+            var cache = System.IO.Path.Combine(Environment.ExpandEnvironmentVariables("%PROGRAMDATA%"), "ToDoList", "cache");
             if (!System.IO.Directory.Exists(cache))
                 System.IO.Directory.CreateDirectory(cache);
 
