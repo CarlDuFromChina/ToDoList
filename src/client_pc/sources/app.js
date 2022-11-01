@@ -42,9 +42,10 @@ webix.ready(function () {
     model: session,
     ping: 15000,
     afterLogin: 'index',
-    user: {
-      code: '',
-      token: ''
+    user: webix.storage.local.get('user'),
+    public: path => {
+      var routes = ['/signup'];
+      return routes.includes(path);
     }
   });
   window.tr = app.getService('locale')._;
@@ -61,10 +62,7 @@ webix.ready(function () {
   // 监听请求异常
   webix.attachEvent('onAjaxError', function (xhr) {
     if (xhr.status === 401) {
-      webix.message({
-        type: 'error',
-        text: 'Access Denied'
-      })
+      app.show('/login');
     }
   });
 
