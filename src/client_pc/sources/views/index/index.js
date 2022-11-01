@@ -20,6 +20,7 @@ export default class IndexView extends JetView {
         {
           cols: [
             {
+              id: 'segmented',
               view: 'segmented',
               maxWidth: '300',
               options: [
