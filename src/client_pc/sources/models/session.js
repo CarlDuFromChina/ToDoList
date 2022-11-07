@@ -1,9 +1,6 @@
 function status() {
   var user = webix.storage.local.get('user');
-  if (user) {
-    return Promise.resolve(user);
-  }
-  return Promise.reject(null);
+  return Promise.resolve(user);
 }
 
 function login(form) {
